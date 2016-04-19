@@ -184,9 +184,8 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
         setupHeader();
         updateAcceptButton();
         progress = new ProgressDialog(this);
-        progress.setTitle("Processing Images");
-        progress.setMessage("This may take a few moments");
-		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText("");
+        progress.setTitle("Apstrādā bildes");
+        progress.setMessage("Šis process var aizņemt kādu laiciņu");
     }
     
     @Override
@@ -246,7 +245,6 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
         }
 
         checkStatus.put(position, isChecked);
-        ((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText((maxImageCount-maxImages) + " foto's");
         updateAcceptButton();
     }
 
@@ -334,8 +332,8 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
      ********************/
     private void updateAcceptButton() {
         ((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done_textview")))
-                .setEnabled(fileNames.size() != 0 && fileNames.size() > 19);
-        getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done")).setEnabled(fileNames.size() != 0 && fileNames.size() > 19);
+                .setEnabled(fileNames.size() != 0);
+        getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done")).setEnabled(fileNames.size() != 0);
     }
 
     private void setupHeader() {
@@ -441,7 +439,6 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
 	    		maxImages--;
     		}
     	}
-		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText((maxImageCount-maxImages) + " foto's");
     	updateAcceptButton();
     }
     /*********************
