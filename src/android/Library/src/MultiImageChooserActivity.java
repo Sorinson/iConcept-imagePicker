@@ -185,7 +185,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
         updateAcceptButton();
         progress = new ProgressDialog(this);
         progress.setTitle("Apstrādā bildes");
-        progress.setMessage("Šis process var aizņemt kādu laiciņu");
+        progress.setMessage("Šis process var aizņemt kādu laiciņu.");
 		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText("");
     }
     
