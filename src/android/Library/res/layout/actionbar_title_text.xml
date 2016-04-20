@@ -21,11 +21,12 @@
     style="" >
     <TextView
         android:drawablePadding="8dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:id="@+id/actionbar_title_textview"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:paddingRight="20dp"
         android:text="@string/done"
          />
 </FrameLayout>

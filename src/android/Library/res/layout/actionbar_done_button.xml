@@ -29,6 +29,6 @@
         android:paddingRight="20dp"
         android:drawableLeft="@drawable/ic_action_done_light"
         android:drawablePadding="8dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:text="@string/done" />
 </FrameLayout>
