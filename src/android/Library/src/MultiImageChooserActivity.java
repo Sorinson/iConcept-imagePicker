@@ -246,7 +246,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
         }
 
         checkStatus.put(position, isChecked);
-		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText((maxImageCount-maxImages)+"");
+		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText(fileNames.size()+"");
 		updateAcceptButton();
     }
 
@@ -441,7 +441,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
 	    		maxImages--;
     		}
     	}
-		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText((maxImageCount-maxImages)+"");
+		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText(fileNames.size()+"");
     	updateAcceptButton();
     }
     /*********************
