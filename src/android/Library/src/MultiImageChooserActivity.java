@@ -219,7 +219,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
             alert.show();
         }
 
-        if (isChecked) {
+        if (isChecked && name.toLowerCase().indexOf('.png') == -1) {
             fileNames.put(name, new Integer(rotation));
             if (maxImageCount == 1) {
                 this.selectClicked(null);
