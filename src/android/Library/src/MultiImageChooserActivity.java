@@ -192,62 +192,64 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
         String name = getImageName(position);
-        int rotation = getImageRotation(position);
-        /*AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setTitle("Pic name");
-        builder1.setMessage(name);
-        builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) { 
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert1 = builder1.create();
-        alert1.show();*/
-		
-        boolean isChecked = !isChecked(position);
-        if (maxImages == 0 && isChecked) {
-            isChecked = false;
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Sasniegts maksimālais bilžu skaits.");
-            builder.setMessage("Atļauts pievienot maksimums " + maxImageCount + " bildes.");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) { 
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alert = builder.create();
-            alert.show();
-        }
+		if(name.toLowerCase().indexOf(".png") == -1){
+			int rotation = getImageRotation(position);
+			/*AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+			builder1.setTitle("Pic name");
+			builder1.setMessage(name);
+			builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) { 
+					dialog.cancel();
+				}
+			});
+			AlertDialog alert1 = builder1.create();
+			alert1.show();*/
+			
+			boolean isChecked = !isChecked(position);
+			if (maxImages == 0 && isChecked) {
+				isChecked = false;
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle("Sasniegts maksimālais bilžu skaits.");
+				builder.setMessage("Atļauts pievienot maksimums " + maxImageCount + " bildes.");
+				builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) { 
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+			} else {
+				if (isChecked) {
+					fileNames.put(name, new Integer(rotation));
+					if (maxImageCount == 1) {
+						this.selectClicked(null);
+					} else {
+						maxImages--;
+						ImageView imageView = (ImageView)view;
+						if (android.os.Build.VERSION.SDK_INT>=16) {
+						  imageView.setImageAlpha(128);
+						} else {
+						  imageView.setAlpha(128);
+						}
+						view.setBackgroundColor(selectedColor);
+					}
+				} else {
+					fileNames.remove(name);
+					maxImages++;
+					ImageView imageView = (ImageView)view;
+					if (android.os.Build.VERSION.SDK_INT>=16) {
+						imageView.setImageAlpha(255);
+					} else {
+						imageView.setAlpha(255);
+					}
+					view.setBackgroundColor(Color.TRANSPARENT);
+				}
+			}
 
-        if (isChecked && name.toLowerCase().indexOf(".png") == -1) {
-            fileNames.put(name, new Integer(rotation));
-            if (maxImageCount == 1) {
-                this.selectClicked(null);
-            } else {
-                maxImages--;
-                ImageView imageView = (ImageView)view;
-                if (android.os.Build.VERSION.SDK_INT>=16) {
-                  imageView.setImageAlpha(128);
-                } else {
-                  imageView.setAlpha(128);
-                }
-                view.setBackgroundColor(selectedColor);
-            }
-        } else {
-            fileNames.remove(name);
-            maxImages++;
-            ImageView imageView = (ImageView)view;
-            if (android.os.Build.VERSION.SDK_INT>=16) {
-                imageView.setImageAlpha(255);
-            } else {
-                imageView.setAlpha(255);
-            }
-            view.setBackgroundColor(Color.TRANSPARENT);
-        }
-
-        checkStatus.put(position, isChecked);
-		((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText(fileNames.size()+"");
-		updateAcceptButton();
+			checkStatus.put(position, isChecked);
+			((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText(fileNames.size()+"");
+			updateAcceptButton();
+		}
     }
 
     @Override
