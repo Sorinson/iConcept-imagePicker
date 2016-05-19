@@ -192,7 +192,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
         String name = getImageName(position);
-		if(name.toLowerCase().indexOf(".png") == -1){
+		if(name.toLowerCase().indexOf(".png") == -1 && name.toLowerCase().indexOf(".bmp") == -1){
 			int rotation = getImageRotation(position);
 			/*AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 			builder1.setTitle("Pic name");
@@ -249,6 +249,17 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
 			checkStatus.put(position, isChecked);
 			((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_title_textview"))).setText(fileNames.size()+"");
 			updateAcceptButton();
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Neatļauts faila formāts");
+			builder.setMessage("Atļauts pievienot bildes tikai JPG formātā.");
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) { 
+					dialog.cancel();
+				}
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
 		}
     }
 
